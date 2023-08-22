@@ -1,0 +1,19 @@
+.btn-container{ 
+    width: 250px;
+    background-color: rgb(159, 159, 181);
+} 
+
+.btn-group{ 
+    display: flex;
+} 
+
+.btn{ 
+    width: 70px;
+    border: 1px solid white;
+    transition: .5s;
+    
+}
+
+.btn:hover{ 
+    background-color: rgb(194, 147, 91);
+}

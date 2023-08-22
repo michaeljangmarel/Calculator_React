@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+ import './App.css';
+import Output from './components/Output'
+import Input from './components/Input'
+import Button from './components/Button'
+import { useState } from 'react';
 
-function App() {
+function App() { 
+   let [input , setinput] = useState(0)
+   let [output , setoutput] = useState(0) 
+
+   function onclickButton(value){
+     if(value == 'Clear') { 
+      setinput(0)
+      setoutput(0)
+    }else if(value == '='){ 
+      setoutput(eval(input))
+      setinput(0)
+    }else if(value == 'Back'){ 
+      if(input != 0){
+        input.length == 1 ? setinput(0) : setinput(input.slice(0,input.length -1))
+      }
+    } 
+    else{ 
+      input == 0 ? setinput(value) : setinput(input + value)
+     }
+   }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className="container">
+      <div className='frame'>
+      <Output output={output}/>
+      < Input input={input}/>
+      <Button onclickButton={onclickButton}/>
+      </div>
+     </div>
   );
 }
 
